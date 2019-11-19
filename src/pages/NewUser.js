@@ -37,7 +37,6 @@ class NewUser extends React.Component {
                 <Form>
                     <Form.Group controlId="formName">
                         <Form.Label>Name:</Form.Label>
-                        <Form.Control type="name" placeholder="Enter a Name" />
                         <Form.Control
                           type="text"
                           name="name"
@@ -48,7 +47,6 @@ class NewUser extends React.Component {
 
                     <Form.Group controlId="formProfilePic">
                         <Form.Label>Profile Picture:</Form.Label>
-                        <Form.Control type="profile_pic" placeholder="Enter a Picture (url)" />
                         <Form.Control
                           type="text"
                           name="profile_pic"
@@ -59,7 +57,6 @@ class NewUser extends React.Component {
 
                     <Form.Group controlId="formName">
                         <Form.Label>Focus:</Form.Label>
-                        <Form.Control type="name" placeholder="Enter a field of focus or project that you are working on" />
                         <Form.Control
                           type="text"
                           name="focus"
@@ -70,7 +67,7 @@ class NewUser extends React.Component {
 
 
                     <Button variant="primary" type="submit" onClick={this.displayFormResults}>
-                    Submit
+                    Create New User
                     </Button>
                 </Form>
 
