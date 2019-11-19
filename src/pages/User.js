@@ -1,18 +1,31 @@
 import React, { Component } from 'react';
 import {
-  Col, Container, Row
+  Form,
+  Jumbotron,
+  Button,
+  ListGroup,
+  Col,
+  Container,
+  Row
 } from 'react-bootstrap'
 
 class User extends Component {
   render() {
+    const { id, name, profile_pic, focus} = this.props.currentUser
+
     return (
-      <Container>
-          <Row>
-            <Col>
-            <div>Im a component for User</div>
-            </Col>
-          </Row>
-      </Container>
+        <div>
+            <Jumbotron>
+              <h2>{id}: Name: {name}</h2>
+              <img src={profile_pic}/>
+              <p>
+                {focus}
+              </p>
+              <p>
+                <Button onClick={this.props.next}>Next</Button>
+              </p>
+            </Jumbotron>
+        </div>
     );
   }
 }

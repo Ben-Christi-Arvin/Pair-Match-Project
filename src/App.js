@@ -11,29 +11,29 @@ class App extends Component {
       currentUser: {},
       users: [
         {
-          id: 1,
-          name: 'Patsy',
-          profilep_pic: "http://westlandchildrensacademy.com/wp-content/uploads/generic-female-profile-picture-8.jpg",
-          focus: "Python Driven Web Scraper"
+            id: 1,
+            name: 'Patsy',
+            profile_pic: "http://westlandchildrensacademy.com/wp-content/uploads/generic-female-profile-picture-8.jpg",
+            focus: "Python Driven Web Scraper"
         },
         {
-          id: 2,
-          name: 'Paul',
-          profilep_pic: "https://publicdomainvectors.org/photos/generic-avatar.png",
-          focus: "Python Scripting for Stock Automation"
-      },
-      {
-        id: 3,
-        name: 'Paul',
-        profilep_pic: "https://publicdomainvectors.org/photos/generic-avatar.png",
-        focus: "Python Scripting for Stock Automation"
-    },
-    {
-      id: 4,
-      name: 'Paul',
-      profilep_pic: "https://publicdomainvectors.org/photos/generic-avatar.png",
-      focus: "Python Scripting for Stock Automation"
-    }
+            id: 2,
+            name: 'Paul',
+            profile_pic: "https://publicdomainvectors.org/photos/generic-avatar.png",
+            focus: "Python Scripting for Stock Automation"
+        },
+        {
+            id: 3,
+            name: 'Peter',
+            profile_pic: "https://publicdomainvectors.org/photos/generic-avatar.png",
+            focus: "Ruby on Rails"
+        },
+        {
+            id: 4,
+            name: 'Pen',
+            profile_pic: "http://westlandchildrensacademy.com/wp-content/uploads/generic-female-profile-picture-8.jpg",
+            focus: "React and Javascript"
+        }
       ]
     }
   }
@@ -70,9 +70,8 @@ class App extends Component {
                         </li>
                     </ul>
                 </nav>
-                <h1 onClick={this.getRandomUser}> Test Random</h1>
     			<Switch>
-                    <Route exact path="/user" render={(props) => <User user={this.state.currentUser}/> } />
+                    <Route exact path="/user" render={(props) => <User currentUser={this.state.currentUser} next={this.getRandomUser}/> } />
     				<Route exact path="/newuser" component={NewUser} />
     			</Switch>
             </div>
