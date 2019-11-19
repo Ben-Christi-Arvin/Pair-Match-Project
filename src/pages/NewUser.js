@@ -36,7 +36,7 @@ class NewUser extends React.Component {
             <div>
                 <Form>
                     <Form.Group controlId="formName">
-                        <Form.Label>Name:</Form.Label>
+                        <Form.Label id="name">Name:</Form.Label>
                         <Form.Control
                           type="text"
                           name="name"

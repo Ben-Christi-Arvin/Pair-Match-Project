@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
+import { Nav } from 'react-bootstrap'
 
 import User from './pages/User'
 import NewUser from './pages/NewUser'
@@ -56,20 +57,30 @@ class App extends Component {
       // console.log(currentUser)
   }
 
+  // <nav>
+  //     <ul>
+  //         <li>
+  //             <Link to="/user">User</Link>
+  //         </li>
+  //         <li>
+  //             <Link to="/newuser">NewUser</Link>
+  //         </li>
+  //     </ul>
+  // </nav>
+
   render() {
     return (
 		<Router>
             <div>
-                <nav>
-                    <ul>
-                        <li>
-                            <Link to="/user">User</Link>
-                        </li>
-                        <li>
-                            <Link to="/newuser">NewUser</Link>
-                        </li>
-                    </ul>
-                </nav>
+                <Nav defaultActiveKey="/user" as="ul">
+                    <Nav.Item as="li">
+                        <Nav.Link as={Link} to="/user">User</Nav.Link>
+                    </Nav.Item>
+                    <Nav.Item as="li">
+                        <Nav.Link as={Link} to="/newuser">New User</Nav.Link>
+                    </Nav.Item>
+                </Nav>
+
     			<Switch>
                     <Route exact path="/user" render={(props) => <User currentUser={this.state.currentUser} next={this.getRandomUser}/> } />
     				<Route exact path="/newuser" component={NewUser} />
