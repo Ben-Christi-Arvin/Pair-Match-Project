@@ -5,6 +5,7 @@ import { Nav } from 'react-bootstrap'
 import User from './pages/User'
 import Users from './pages/Users'
 import NewUser from './pages/NewUser'
+import Home from './pages/Home'
 
 class App extends Component {
     constructor(props){
@@ -16,24 +17,28 @@ class App extends Component {
             id: 1,
             name: 'Patsy',
             profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
-            focus: "Python Driven Web Scraper"
+            project_link: "https://github.com/explore",
+            focus: "All things Elixir"
         },
         {
             id: 2,
             name: 'Paul',
             profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
+            project_link: "https://github.com/explore",
             focus: "Python Scripting for Stock Automation"
         },
         {
             id: 3,
             name: 'Peter',
             profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
+            project_link: "https://github.com/explore",
             focus: "Ruby on Rails"
         },
         {
             id: 4,
             name: 'Pen',
             profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
+            project_link: "https://github.com/explore",
             focus: "React and Javascript"
         }
       ]
@@ -70,25 +75,28 @@ class App extends Component {
 
                 <div class="collapse navbar-collapse" id="navbarColor01">
                 <ul class="navbar-nav mr-auto">
-                <li class="nav-item active">
-                <a class="nav-link" href="/newuser">New User <span class="sr-only">(current)</span></a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/user">Start Matching</a>
-                </li>
-                <li class="nav-item">
-                <a class="nav-link" href="/users">Current Potential Pairs</a>
-                </li>
-
+                    <li class="nav-item active">
+                        <a class="nav-link" href="/">Home Page<span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="nav-item ">
+                        <a class="nav-link" href="/newuser">New User </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/user">Start Matching</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/users">Current Potential Pairs</a>
+                    </li>
                 </ul>
                
                 </div>
                 </nav>
 
     			<Switch>
+    				<Route exact path="/" component={Home} />
+    				<Route exact path="/newuser" component={NewUser} />
                     <Route exact path="/user" render={(props) => <User currentUser={this.state.currentUser} next={this.getRandomUser}/> } />
                     <Route exact path="/users" render={(props) => <Users users={this.state.users}/> } />
-    				<Route exact path="/newuser" component={NewUser} />
     			</Switch>
             </div>
 		</Router>

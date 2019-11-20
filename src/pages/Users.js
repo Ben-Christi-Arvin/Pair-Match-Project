@@ -8,12 +8,13 @@ import {
   Container,
   Row,
   Card,
-  CardGroup
+  CardGroup,
 } from 'react-bootstrap'
+
+import { Link } from 'react-router-dom'
 
 class Users extends Component {
   render() {
-    const { id, name, profile_pic, focus} = this.props.users
 
     return (
         <div>
@@ -24,8 +25,10 @@ class Users extends Component {
                     <Card>
                         <Card.Img variant="top" src={userObj.profile_pic} style={{width:"100px"}}/>
                         <Card.Body>
-                        <Card.Title>{userObj.name}</Card.Title>
-                        <Card.Text>{userObj.focus}</Card.Text>
+                        <Card.Title>{userObj.id}. {userObj.name}</Card.Title>
+                        <Card.Text style={{"font-weight":"bold"}}>Current Focus: {userObj.focus}</Card.Text>
+                        <Card.Text>Project Link: <a href={userObj.project_link}>{userObj.project_link}</a></Card.Text>
+                        
                         </Card.Body>
                        
                     </Card>
