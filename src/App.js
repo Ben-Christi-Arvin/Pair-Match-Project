@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { Nav } from 'react-bootstrap'
+import { getUsers } from './api'
 
 import User from './pages/User'
 import Users from './pages/Users'
@@ -9,45 +10,25 @@ import Home from './pages/Home'
 
 class App extends Component {
     constructor(props){
-    super(props)
-    this.state = {
-      currentUser: {},
-      users: [
-        {
-            id: 1,
-            name: 'Patsy',
-            profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
-            project_link: "https://github.com/explore",
-            focus: "All things Elixir"
-        },
-        {
-            id: 2,
-            name: 'Paul',
-            profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
-            project_link: "https://github.com/explore",
-            focus: "Python Scripting for Stock Automation"
-        },
-        {
-            id: 3,
-            name: 'Peter',
-            profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
-            project_link: "https://github.com/explore",
-            focus: "Ruby on Rails"
-        },
-        {
-            id: 4,
-            name: 'Pen',
-            profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
-            project_link: "https://github.com/explore",
-            focus: "React and Javascript"
-        }
-      ]
+        super(props)
+            this.state = {
+            currentUser: {},
+            users: []
+            }
     }
-  }
 
-  componentDidMount = () => {
+
+componentDidMount() {
+  getUsers()
+	.then(APIusers => {
+	  this.setState({
+		users: APIusers
+	  })
       this.getRandomUser()
-  }
+  })
+
+}
+
 
   getRandomUser = () => {
       const { users, currentUser } =this.state
@@ -66,7 +47,7 @@ class App extends Component {
     return (
 		<Router>
             <div>
-                
+
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
                 <a className="navbar-brand" href="#">PAIR PROJECT MATCHER</a>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
@@ -88,7 +69,7 @@ class App extends Component {
                         <a className="nav-link" href="/users">Current Potential Pairs</a>
                     </li>
                 </ul>
-               
+
                 </div>
                 </nav>
 
