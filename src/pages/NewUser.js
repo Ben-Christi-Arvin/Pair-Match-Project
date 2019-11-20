@@ -52,7 +52,7 @@ class NewUser extends React.Component {
                           type="text"
                           name="profile_pic"
                           onChange={this.handleChange}
-                          value={this.state.form.name}
+                          value={this.state.form.profile_pic}
                         />
                     </Form.Group>
 
@@ -62,7 +62,7 @@ class NewUser extends React.Component {
                           type="text"
                           name="focus"
                           onChange={this.handleChange}
-                          value={this.state.form.name}
+                          value={this.state.form.focus}
                         />
                     </Form.Group>
 
