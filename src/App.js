@@ -3,6 +3,7 @@ import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
 import { Nav } from 'react-bootstrap'
 
 import User from './pages/User'
+import Users from './pages/Users'
 import NewUser from './pages/NewUser'
 
 class App extends Component {
@@ -14,25 +15,25 @@ class App extends Component {
         {
             id: 1,
             name: 'Patsy',
-            profile_pic: "http://westlandchildrensacademy.com/wp-content/uploads/generic-female-profile-picture-8.jpg",
+            profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
             focus: "Python Driven Web Scraper"
         },
         {
             id: 2,
             name: 'Paul',
-            profile_pic: "https://publicdomainvectors.org/photos/generic-avatar.png",
+            profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
             focus: "Python Scripting for Stock Automation"
         },
         {
             id: 3,
             name: 'Peter',
-            profile_pic: "https://publicdomainvectors.org/photos/generic-avatar.png",
+            profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
             focus: "Ruby on Rails"
         },
         {
             id: 4,
             name: 'Pen',
-            profile_pic: "http://westlandchildrensacademy.com/wp-content/uploads/generic-female-profile-picture-8.jpg",
+            profile_pic: "https://stroseschool.stroselions.net/wp-content/uploads/2018/04/profile-blank-reva.png",
             focus: "React and Javascript"
         }
       ]
@@ -54,8 +55,48 @@ class App extends Component {
       const randomUser = users[randomNum]
 
       this.setState({currentUser: randomUser})
-      // console.log(currentUser)
   }
+
+  render() {
+    return (
+		<Router>
+            <div>
+                
+                <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+                <a class="navbar-brand" href="#">PAIR PROJECT MATCHER</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="navbarColor01">
+                <ul class="navbar-nav mr-auto">
+                <li class="nav-item active">
+                <a class="nav-link" href="/newuser">New User <span class="sr-only">(current)</span></a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/user">Start Matching</a>
+                </li>
+                <li class="nav-item">
+                <a class="nav-link" href="/users">Current Potential Pairs</a>
+                </li>
+
+                </ul>
+               
+                </div>
+                </nav>
+
+    			<Switch>
+                    <Route exact path="/user" render={(props) => <User currentUser={this.state.currentUser} next={this.getRandomUser}/> } />
+                    <Route exact path="/users" render={(props) => <Users users={this.state.users}/> } />
+    				<Route exact path="/newuser" component={NewUser} />
+    			</Switch>
+            </div>
+		</Router>
+    );
+  }
+}
+
+export default App;
 
   // <nav>
   //     <ul>
@@ -67,28 +108,3 @@ class App extends Component {
   //         </li>
   //     </ul>
   // </nav>
-
-  render() {
-    return (
-		<Router>
-            <div>
-                <Nav defaultActiveKey="/user" as="ul">
-                    <Nav.Item as="li">
-                        <Nav.Link as={Link} to="/user">User</Nav.Link>
-                    </Nav.Item>
-                    <Nav.Item as="li">
-                        <Nav.Link as={Link} to="/newuser">New User</Nav.Link>
-                    </Nav.Item>
-                </Nav>
-
-    			<Switch>
-                    <Route exact path="/user" render={(props) => <User currentUser={this.state.currentUser} next={this.getRandomUser}/> } />
-    				<Route exact path="/newuser" component={NewUser} />
-    			</Switch>
-            </div>
-		</Router>
-    );
-  }
-}
-
-export default App;

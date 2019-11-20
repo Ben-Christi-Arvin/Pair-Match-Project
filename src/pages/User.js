@@ -17,12 +17,12 @@ class User extends Component {
         <div>
             <Jumbotron>
               <h2>{id}: Name: {name}</h2>
-              <img src={profile_pic}/>
+              <img src={profile_pic} alt="profile picture"/>
+              <h3>
+                Current Focus: <h4>{focus}</h4>
+              </h3>
               <p>
-                {focus}
-              </p>
-              <p>
-                <Button onClick={this.props.next}>Next</Button>
+                <Button onClick={this.props.next}>Next Potential Pair</Button>
               </p>
             </Jumbotron>
         </div>

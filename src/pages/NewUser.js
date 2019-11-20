@@ -34,6 +34,7 @@ class NewUser extends React.Component {
     render() {
         return(
             <div>
+                <br></br>
                 <Form>
                     <Form.Group controlId="formName">
                         <Form.Label id="name">Name:</Form.Label>
@@ -71,15 +72,13 @@ class NewUser extends React.Component {
                     </Button>
                 </Form>
 
-
-
-
             </div>
         )
     }
 }
 
 export default NewUser
+
 // <Form.Control
 //   type="text"
 //   name="name"
