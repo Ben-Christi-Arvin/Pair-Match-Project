@@ -10,6 +10,7 @@ class NewUser extends React.Component {
     constructor(props){
     super(props)
         this.state = {
+            success: false,
             form: {
                 name: '',
                 profile_pic: '',
@@ -22,11 +23,13 @@ class NewUser extends React.Component {
         let {form} = this.state
         form[event.target.name] = event.target.value
         this.setState({form: form})
+
     }
 
     handleClick = () => {
         // console.log(this.state.form)
         this.props.createUser(this.state.form)
+        this.setState({...this.state, success: true})
     }
 
     render() {
@@ -68,11 +71,12 @@ class NewUser extends React.Component {
                     <Button variant="primary" onClick={this.handleClick}>
                     Create New User
                     </Button>
-                    {this.props.success &&
-                        <Redirect to="/users" />
-                    }
-                </Form>
 
+                </Form>
+                {console.log(this.state.success)}
+                {this.state.success &&
+                    <Redirect to="/users" />
+                }
             </div>
         )
     }

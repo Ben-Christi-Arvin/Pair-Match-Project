@@ -27,7 +27,7 @@ class App extends Component {
     }
 
     handleNewUser = (newUserInfo) => {
-    	return createUser(newUserInfo)
+    	createUser(newUserInfo)
         .then(successUser => {
             console.log("SUCCESS! New user: ", successUser);
         })

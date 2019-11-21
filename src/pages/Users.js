@@ -18,7 +18,7 @@ class Users extends Component {
                         <Card.Img variant="top" src={userObj.profile_pic} style={{width:"100px"}}/>
                         <Card.Body>
                         <Card.Title>{userObj.id}. {userObj.name}</Card.Title>
-                        <Card.Text style={{"font-weight":"bold"}}>Current Focus: {userObj.focus}</Card.Text>
+                        <Card.Text style={{"fontWeight":"bold"}}>Current Focus: {userObj.focus}</Card.Text>
                         <Card.Text>Project Link: <a href={userObj.project_link}>{userObj.project_link}</a></Card.Text>
 
                         </Card.Body>
