@@ -19,6 +19,10 @@ class NewUser extends React.Component {
         }
     }
 
+    componentDidMount() {
+        console.log("new user mounted")
+    }
+
     handleChange = (event) => {
         let {form} = this.state
         form[event.target.name] = event.target.value
