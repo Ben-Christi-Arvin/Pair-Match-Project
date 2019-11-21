@@ -1,17 +1,9 @@
 import React, { Component } from 'react';
 import {
-  Form,
-  Jumbotron,
-  Button,
-  ListGroup,
-  Col,
-  Container,
-  Row,
   Card,
   CardGroup,
 } from 'react-bootstrap'
 
-import { Link } from 'react-router-dom'
 
 class Users extends Component {
   render() {
@@ -21,16 +13,16 @@ class Users extends Component {
             <h1>Potential Pairs</h1>
             {this.props.users.map((userObj, index) => {
                 return(
-                    <CardGroup>
+                    <CardGroup key={index}>
                     <Card>
                         <Card.Img variant="top" src={userObj.profile_pic} style={{width:"100px"}}/>
                         <Card.Body>
                         <Card.Title>{userObj.id}. {userObj.name}</Card.Title>
                         <Card.Text style={{"font-weight":"bold"}}>Current Focus: {userObj.focus}</Card.Text>
                         <Card.Text>Project Link: <a href={userObj.project_link}>{userObj.project_link}</a></Card.Text>
-                        
+
                         </Card.Body>
-                       
+
                     </Card>
                 </CardGroup>
             )})}

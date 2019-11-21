@@ -1,7 +1,6 @@
 import React, { Component } from 'react'
-import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom'
-import { Nav } from 'react-bootstrap'
-import { getUsers } from './api'
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import { getUsers, createUser } from './api'
 
 import User from './pages/User'
 import Users from './pages/Users'
@@ -17,21 +16,25 @@ class App extends Component {
             }
     }
 
+    componentDidMount() {
+      getUsers()
+    	.then(APIusers => {
+    	  this.setState({
+    		users: APIusers
+    	  })
+          this.getRandomUser()
+      })
+    }
 
-componentDidMount() {
-  getUsers()
-	.then(APIusers => {
-	  this.setState({
-		users: APIusers
-	  })
-      this.getRandomUser()
-  })
+    handleNewUser = (newUserInfo) => {
+    	return createUser(newUserInfo)
+        .then(successUser => {
+            console.log("SUCCESS! New user: ", successUser);
+        })
+    }
 
-}
-
-
-  getRandomUser = () => {
-      const { users, currentUser } =this.state
+    getRandomUser = () => {
+      const { users } =this.state
 
       const usersId = this.state.users.map(userObj => {
           return userObj.id
@@ -41,15 +44,14 @@ componentDidMount() {
       const randomUser = users[randomNum]
 
       this.setState({currentUser: randomUser})
-  }
+    }
 
   render() {
     return (
 		<Router>
             <div>
-
                 <nav className="navbar navbar-expand-lg navbar-dark bg-primary">
-                <a className="navbar-brand" href="#">PAIR PROJECT MATCHER</a>
+                <h1 className="navbar-brand" >PAIR PROJECT MATCHER</h1>
                 <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
                 <span className="navbar-toggler-icon"></span>
                 </button>
@@ -75,7 +77,7 @@ componentDidMount() {
 
     			<Switch>
     				<Route exact path="/" component={Home} />
-    				<Route exact path="/newuser" component={NewUser} />
+                    <Route exact path="/newuser" render={(props) => <NewUser createUser={this.handleNewUser}/> } />
                     <Route exact path="/user" render={(props) => <User currentUser={this.state.currentUser} next={this.getRandomUser}/> } />
                     <Route exact path="/users" render={(props) => <Users users={this.state.users}/> } />
     			</Switch>

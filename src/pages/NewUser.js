@@ -1,10 +1,10 @@
 import React from 'react'
 import {
   Form,
-  Jumbotron,
   Button,
-  ListGroup,
 } from 'react-bootstrap'
+
+import { Redirect } from 'react-router-dom'
 
 class NewUser extends React.Component {
     constructor(props){
@@ -24,11 +24,9 @@ class NewUser extends React.Component {
         this.setState({form: form})
     }
 
-    displayFormResults = () => {
-            const { name, profile_pic, focus} = this.state.form
-
-            console.log(this.state.form)
-
+    handleClick = () => {
+        // console.log(this.state.form)
+        this.props.createUser(this.state.form)
     }
 
     render() {
@@ -67,9 +65,12 @@ class NewUser extends React.Component {
                     </Form.Group>
 
 
-                    <Button variant="primary" type="submit" onClick={this.displayFormResults}>
+                    <Button variant="primary" onClick={this.handleClick}>
                     Create New User
                     </Button>
+                    {this.props.success &&
+                        <Redirect to="/users" />
+                    }
                 </Form>
 
             </div>
