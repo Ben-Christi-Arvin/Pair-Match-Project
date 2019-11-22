@@ -1,12 +1,7 @@
 import React from 'react'
 import {
-    Form,
     Jumbotron,
-    Button,
-    ListGroup,
-    Col,
     Container,
-    Row
   } from 'react-bootstrap'
 
 class Home extends React.Component {

@@ -1,15 +1,16 @@
 import React from 'react'
 import {
   Form,
-  Jumbotron,
   Button,
-  ListGroup,
 } from 'react-bootstrap'
+
+import { Redirect } from 'react-router-dom'
 
 class NewUser extends React.Component {
     constructor(props){
     super(props)
         this.state = {
+            success: false,
             form: {
                 name: '',
                 profile_pic: '',
@@ -18,17 +19,21 @@ class NewUser extends React.Component {
         }
     }
 
+    componentDidMount() {
+        console.log("new user mounted")
+    }
+
     handleChange = (event) => {
         let {form} = this.state
         form[event.target.name] = event.target.value
         this.setState({form: form})
+
     }
 
-    displayFormResults = () => {
-            const { name, profile_pic, focus} = this.state.form
-
-            console.log(this.state.form)
-
+    handleClick = () => {
+        // console.log(this.state.form)
+        this.props.createUser(this.state.form)
+        this.setState({...this.state, success: true})
     }
 
     render() {
@@ -52,7 +57,7 @@ class NewUser extends React.Component {
                           type="text"
                           name="profile_pic"
                           onChange={this.handleChange}
-                          value={this.state.form.name}
+                          value={this.state.form.profile_pic}
                         />
                     </Form.Group>
 
@@ -62,16 +67,20 @@ class NewUser extends React.Component {
                           type="text"
                           name="focus"
                           onChange={this.handleChange}
-                          value={this.state.form.name}
+                          value={this.state.form.focus}
                         />
                     </Form.Group>
 
 
-                    <Button variant="primary" type="submit" onClick={this.displayFormResults}>
+                    <Button variant="primary" onClick={this.handleClick}>
                     Create New User
                     </Button>
-                </Form>
 
+                </Form>
+                {console.log(this.state.success)}
+                {this.state.success &&
+                    <Redirect to="/users" />
+                }
             </div>
         )
     }
