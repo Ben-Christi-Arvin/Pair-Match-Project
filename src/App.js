@@ -1,5 +1,6 @@
 import React, { Component } from 'react'
 import { BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom'
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap'
 import { getUsers, createUser } from './api'
 
 import User from './pages/User'
@@ -50,23 +51,19 @@ class App extends Component {
     return (
 		<Router>
             <div>
-                <nav >
-                  <h1 className="navbar-brand" >PAIR PROJECT MATCHER</h1>
-                    <ul>
-                      <li>
-                       <Link to="/">Home Page</Link>
-                      </li>
-                      <li>
-                        <Link to="/newuser">Create a new user</Link>
-                      </li>                     
-                      <li>
-                        <Link to="/user">Start Matching</Link>
-                      </li>
-                      <li>
-                        <Link to="/users">Current Potential Projects</Link>
-                      </li>
-                  </ul>
-                </nav>
+                <Navbar collapseOnSelect expand="lg" bg="dark" variant="dark">
+                  <Navbar.Brand >PAIR PROJECT MATCHER</Navbar.Brand>
+                  <Navbar.Toggle aria-controls="responsive-navbar-nav" />
+                  <Navbar.Collapse id="responsive-navbar-nav">
+                    <Nav className="mr-auto" >
+                      <Nav.Link ><Link style={{color: "white"}} to="/" >Home Page</Link></Nav.Link>
+                      <Nav.Link><Link style={{color: "white"}} to="/newuser">Create a new user</Link></Nav.Link>
+                      <Nav.Link> <Link style={{color: "white"}} to="/user">Start Matching</Link></Nav.Link>
+                      <Nav.Link><Link style={{color: "white"}} to="/users">Current Potential Projects</Link></Nav.Link>
+                    </Nav>
+                  
+                  </Navbar.Collapse>
+                </Navbar>
 
     			<Switch>
     				<Route exact path="/" component={Home} />
